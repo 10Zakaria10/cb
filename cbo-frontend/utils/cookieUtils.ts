@@ -1,0 +1,15 @@
+/* eslint-disable */
+export const getCookie = (name: string) => {
+  if (process.browser) {
+    const matches = new RegExp(`(?:^|; )${name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1")}=([^;]*)`).exec(
+      document.cookie,
+    );
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+  }
+};
+
+export const deleteCookies = () => {
+  document.cookie.split(";").forEach(function (c) {
+    document.cookie = c.replace(/^ +/, "").replace(/[=].*/, `=;expires=${new Date().toUTCString()};path=/`);
+  });
+};

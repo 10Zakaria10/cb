@@ -1,0 +1,28 @@
+{
+  "extends": ["plugin:@next/next/recommended", "@ginkoe/eslint-config", "plugin:jsx-a11y/recommended"],
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "rules": {
+    "@typescript-eslint/no-floating-promises": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "jsx-a11y/click-events-have-key-events":"off",
+    "no-nested-ternary": "off"
+},
+  "overrides": [
+    {
+      "files": ["*.{spec,test}.{ts,tsx}"],
+      "rules": {
+        "max-nested-callbacks": ["error", { "max": 4 }],
+        "no-restricted-syntax": [
+          "error",
+          {
+            "selector": "CallExpression[callee.property.name='toMatchSnapshot']",
+            "message": "Unexpected toMatchSnapshot"
+          }
+        ]
+      }
+    }
+  ]
+}
